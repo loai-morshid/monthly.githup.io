@@ -1,0 +1,377 @@
+    <script>
+        function exportToExcel() {
+            // Get the table
+            const table = document.getElementById('excelTable');
+            const workbook = `
+                <html xmlns:o="urn:schemas-microsoft-com:office:office" 
+                      xmlns:x="urn:schemas-microsoft-com:office:excel" 
+                      xmlns="http://www.w3.org/TR/REC-html40">
+                <head>
+                    <meta charset="utf-8">
+                    <meta name="ProgId" content="Excel.Sheet">
+                    <meta name="Generator" content="Microsoft Excel 15">
+                    <!--[if gte mso 9]>
+                    <xml>
+                        <x:ExcelWorkbook>
+                            <x:ExcelWorksheets>
+                                <x:ExcelWorksheet>
+                                    <x:Name>Project Milestone Update</x:Name>
+                                    <x:WorksheetSource HRef=""/>
+                                </x:ExcelWorksheet>
+                            </x:ExcelWorksheets>
+                        </x:ExcelWorkbook>
+                    </xml>
+                    <![endif]-->
+                </head>
+                <body>
+                    ${table.outerHTML}
+                </body>
+                </html>
+            `;
+
+            // Create download
+            const blob = new Blob([workbook], {
+                type: 'application/vnd.ms-excel'
+            });
+            
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Project_Milestone_Update<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Milestone Update - Excel Export</title>
+    <style>
+        body {
+            font-family: Calibri, Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: white;
+        }
+        
+        .instructions {
+            background-color: #e8f4f8;
+            border: 1px solid #4472c4;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #2b5797;
+        }
+        
+        .export-buttons {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .export-btn {
+            background: #2b5797;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .export-btn:hover {
+            background: #1e3f6f;
+        }
+        
+        .worksheet {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 11px;
+            font-family: Calibri, Arial, sans-serif;
+        }
+        
+        .worksheet th, .worksheet td {
+            border: 1px solid #000000;
+            padding: 4px 6px;
+            text-align: left;
+            vertical-align: top;
+            height: 20px;
+        }
+        
+        .worksheet th {
+            background-color: #d9d9d9;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        .section-header {
+            background-color: #4472c4;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .project-info {
+            background-color: #f2f2f2;
+        }
+        
+        .milestone-row {
+            background-color: #fff2cc;
+        }
+        
+        .strategy-row {
+            background-color: #e2efda;
+        }
+        
+        .metric-row {
+            background-color: #fce4d6;
+        }
+        
+        .input-cell {
+            background-color: #ffffff;
+        }
+        
+        .date-cell {
+            width: 80px;
+        }
+        
+        .description-cell {
+            width: 250px;
+        }
+        
+        .status-cell {
+            width: 100px;
+            text-align: center;
+        }
+        
+        .notes-cell {
+            width: 150px;
+        }
+        
+        .summary-cell {
+            height: 60px;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h3>📊 Excel Export Instructions</h3>
+        <p><strong>Method 1:</strong> Select all the table data below (Ctrl+A), copy (Ctrl+C), then paste into Excel</p>
+        <p><strong>Method 2:</strong> Save this page as an Excel file using the button below</p>
+        <p><strong>Method 3:</strong> Right-click on the table and select "Copy" then paste into Excel</p>
+    </div>
+    
+    <div class="export-buttons">
+        <button class="export-btn" onclick="exportToExcel()">📥 Download as Excel File</button>
+        <button class="export-btn" onclick="selectTable()">📋 Select Table for Copy</button>
+    </div>
+        
+        <table class="worksheet" id="excelTable">
+            <!-- Project Information Section -->
+            <tr>
+                <th colspan="6" class="section-header">PROJECT MILESTONE UPDATE</th>
+            </tr>
+            <tr class="project-info">
+                <th>Report Date:</th>
+                <td class="input-cell">6/30/2025</td>
+                <th>Project Manager:</th>
+                <td class="input-cell">[Your Name]</td>
+                <th>Position:</th>
+                <td class="input-cell">[Your Title]</td>
+            </tr>
+            <tr class="project-info">
+                <th>Project Name:</th>
+                <td class="input-cell">[Project Name]</td>
+                <th>Project Code:</th>
+                <td class="input-cell">[Project ID]</td>
+                <th>Reporting Period:</th>
+                <td class="input-cell">[Start] - [End Date]</td>
+            </tr>
+            
+            <!-- Key Metrics Section -->
+            <tr>
+                <th colspan="6" class="section-header">KEY METRICS & STATUS</th>
+            </tr>
+            <tr class="metric-row">
+                <th>Overall Progress:</th>
+                <td class="input-cell">0%</td>
+                <th>Budget Status:</th>
+                <td class="input-cell">On Track</td>
+                <th>Timeline Status:</th>
+                <td class="input-cell">On Schedule</td>
+            </tr>
+            <tr class="metric-row">
+                <th>Team Size (FTEs):</th>
+                <td class="input-cell">0</td>
+                <th>Budget Utilized:</th>
+                <td class="input-cell">$0</td>
+                <th>Next Review Date:</th>
+                <td class="input-cell">[Date]</td>
+            </tr>
+            
+            <!-- Milestones Achieved Section -->
+            <tr>
+                <th colspan="6" class="section-header">MILESTONES ACHIEVED</th>
+            </tr>
+            <tr>
+                <th class="date-cell">Completion Date</th>
+                <th class="description-cell">Milestone Description</th>
+                <th class="status-cell">Status</th>
+                <th class="notes-cell">Impact/Significance</th>
+                <th class="notes-cell">Key Deliverables</th>
+                <th class="notes-cell">Notes</th>
+            </tr>
+            <tr class="milestone-row">
+                <td class="date-cell">[Date]</td>
+                <td class="description-cell">[Milestone 1 Description]</td>
+                <td class="status-cell">Complete</td>
+                <td class="notes-cell">[Impact Description]</td>
+                <td class="notes-cell">[Deliverables]</td>
+                <td class="notes-cell">[Additional Notes]</td>
+            </tr>
+            <tr class="milestone-row">
+                <td class="date-cell">[Date]</td>
+                <td class="description-cell">[Milestone 2 Description]</td>
+                <td class="status-cell">Complete</td>
+                <td class="notes-cell">[Impact Description]</td>
+                <td class="notes-cell">[Deliverables]</td>
+                <td class="notes-cell">[Additional Notes]</td>
+            </tr>
+            <tr class="milestone-row">
+                <td class="date-cell">[Date]</td>
+                <td class="description-cell">[Milestone 3 Description]</td>
+                <td class="status-cell">Complete</td>
+                <td class="notes-cell">[Impact Description]</td>
+                <td class="notes-cell">[Deliverables]</td>
+                <td class="notes-cell">[Additional Notes]</td>
+            </tr>
+            
+            <!-- Strategic Next Steps Section -->
+            <tr>
+                <th colspan="6" class="section-header">STRATEGIC NEXT STEPS</th>
+            </tr>
+            <tr>
+                <th class="date-cell">Target Date</th>
+                <th class="description-cell">Strategic Action/Goal</th>
+                <th class="status-cell">Priority Level</th>
+                <th class="notes-cell">Expected Outcome</th>
+                <th class="notes-cell">Resource Requirements</th>
+                <th class="notes-cell">Potential Challenges</th>
+            </tr>
+            <tr class="strategy-row">
+                <td class="date-cell">[Target Date]</td>
+                <td class="description-cell">[Strategic Action 1]</td>
+                <td class="status-cell">High</td>
+                <td class="notes-cell">[Expected Outcome]</td>
+                <td class="notes-cell">[Resources Needed]</td>
+                <td class="notes-cell">[Potential Risks]</td>
+            </tr>
+            <tr class="strategy-row">
+                <td class="date-cell">[Target Date]</td>
+                <td class="description-cell">[Strategic Action 2]</td>
+                <td class="status-cell">Medium</td>
+                <td class="notes-cell">[Expected Outcome]</td>
+                <td class="notes-cell">[Resources Needed]</td>
+                <td class="notes-cell">[Potential Risks]</td>
+            </tr>
+            <tr class="strategy-row">
+                <td class="date-cell">[Target Date]</td>
+                <td class="description-cell">[Strategic Action 3]</td>
+                <td class="status-cell">High</td>
+                <td class="notes-cell">[Expected Outcome]</td>
+                <td class="notes-cell">[Resources Needed]</td>
+                <td class="notes-cell">[Potential Risks]</td>
+            </tr>
+            <tr class="strategy-row">
+                <td class="date-cell">[Target Date]</td>
+                <td class="description-cell">[Strategic Action 4]</td>
+                <td class="status-cell">Medium</td>
+                <td class="notes-cell">[Expected Outcome]</td>
+                <td class="notes-cell">[Resources Needed]</td>
+                <td class="notes-cell">[Potential Risks]</td>
+            </tr>
+            
+            <!-- Executive Summary Section -->
+            <tr>
+                <th colspan="6" class="section-header">EXECUTIVE SUMMARY</th>
+            </tr>
+            <tr>
+                <td colspan="6" class="input-cell summary-cell">
+                    [2-3 sentence executive summary highlighting key achievements, current status, and critical next steps. Focus on business impact and strategic alignment with organizational goals.]
+                </td>
+            </tr>
+            
+            <!-- Action Items Section -->
+            <tr>
+                <th colspan="6" class="section-header">IMMEDIATE ACTION ITEMS</th>
+            </tr>
+            <tr>
+                <th class="date-cell">Due Date</th>
+                <th class="description-cell">Action Item</th>
+                <th class="status-cell">Owner</th>
+                <th class="notes-cell">Status</th>
+                <th class="notes-cell">Dependencies</th>
+                <th class="notes-cell">Notes</th>
+            </tr>
+            <tr class="milestone-row">
+                <td class="date-cell">[Due Date]</td>
+                <td class="description-cell">[Action Item 1]</td>
+                <td class="status-cell">[Owner Name]</td>
+                <td class="status-cell">In Progress</td>
+                <td class="notes-cell">[Dependencies]</td>
+                <td class="notes-cell">[Notes]</td>
+            </tr>
+            <tr class="milestone-row">
+                <td class="date-cell">[Due Date]</td>
+                <td class="description-cell">[Action Item 2]</td>
+                <td class="status-cell">[Owner Name]</td>
+                <td class="status-cell">Not Started</td>
+                <td class="notes-cell">[Dependencies]</td>
+                <td class="notes-cell">[Notes]</td>
+            </tr>
+            
+            <!-- Report Footer -->
+            <tr>
+                <th colspan="6" class="section-header">REPORT SIGNATURE</th>
+            </tr>
+            <tr class="project-info">
+                <th>Prepared By:</th>
+                <td class="input-cell">[Your Name]</td>
+                <th>Date:</th>
+                <td class="input-cell">[Date]</td>
+                <th>Next Report Due:</th>
+                <td class="input-cell">[Next Date]</td>
+            </tr>
+        </table>
+
+    <script>
+        // Add some Excel-like functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Focus behavior for editable cells
+            const editableCells = document.querySelectorAll('.editable');
+            
+            editableCells.forEach(cell => {
+                cell.addEventListener('focus', function() {
+                    if (this.textContent.startsWith('[') && this.textContent.endsWith(']')) {
+                        this.textContent = '';
+                    }
+                });
+                
+                cell.addEventListener('keydown', function(e) {
+                    if (e.key === 'Tab') {
+                        e.preventDefault();
+                        const nextCell = this.closest('td').nextElementSibling?.querySelector('.editable') ||
+                                        this.closest('tr').nextElementSibling?.querySelector('.editable');
+                        if (nextCell) {
+                            nextCell.focus();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
